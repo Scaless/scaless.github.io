@@ -3,8 +3,12 @@ layout: post
 title:  "Halo 2 'BSP Crash' Fix"
 date:   2021-05-01 12:10:43 -0500
 categories: halo bugfix
-twitchvideo1: PlayfulDelightfulHumanSeemsGood
-twitchvideo2: 
+twitchclip1: PlayfulDelightfulHumanSeemsGood
+twitchclip2: BoredRamshackleCaribouBleedPurple
+twitchvideo1: 831432106
+youtubevideo1: cDY_cN5cQuc
+youtubevideo2: POnqGtKdsFA
+youtubevideo3: jsiu1WPDqJQ
 ---
 
 {% highlight cpp %}
@@ -23,7 +27,17 @@ char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 int64_t next_tag_index = 1;
 {% endhighlight %}
 
-{% include twitchPlayer.html id=page.twitchvideo1 %}
+{% include twitchClipPlayer.html id=page.twitchclip1 %}
+
+{% include twitchClipPlayer.html id=page.twitchclip2 %}
+
+{% include twitchVODPlayer.html id=page.twitchvideo1 %}
+
+{% include youtubePlayer.html id=page.youtubevideo1 %}
+
+{% include youtubePlayer.html id=page.youtubevideo2 %}
+
+{% include youtubePlayer.html id=page.youtubevideo3 %}
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 

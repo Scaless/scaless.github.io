@@ -1,29 +1,34 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Halo 2 'BSP Crash' Fix"
 date:   2021-05-01 12:10:43 -0500
-categories: jekyll update
+categories: halo bugfix
+twitchvideo1: PlayfulDelightfulHumanSeemsGood
+twitchvideo2: 
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-Jekyll requires blog post files to be named according to the following format:
+{% highlight cpp %}
 
-`YEAR-MONTH-DAY-title.MARKUP`
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+// ...
+void* p_buffer[32768]; Buffer of tag pointers, fixed-size 32k elements
+// After the tag buffer exists some debug data
+// ...
+char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
+// ...
+// After the debug data is *very important* Scenario data
+// ...
+// ...
+// The next index into p_buffer to allocate and hand out, starts at 1
+int64_t next_tag_index = 1;
 {% endhighlight %}
+
+{% include twitchPlayer.html id=page.twitchvideo1 %}
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
+
+[implemented-fix]: https://github.com/Scaless/HaloTAS/blob/master/HaloTAS/HRPatcher/dllmain.cpp#L257

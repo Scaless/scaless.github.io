@@ -27,16 +27,17 @@ char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 int64_t next_tag_index = 1;
 {% endhighlight %}
 
+EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
-
+Dubhzo:
 {% include twitchClipPlayer.html id=page.twitchclip2 %}
 
 {% include twitchVODPlayer.html id=page.twitchvideo1 %}
-
+ibigblue #1:
 {% include youtubePlayer.html id=page.youtubevideo1 %}
-
+ibigblue #2:
 {% include youtubePlayer.html id=page.youtubevideo2 %}
-
+Raiyuki:
 {% include youtubePlayer.html id=page.youtubevideo3 %}
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].

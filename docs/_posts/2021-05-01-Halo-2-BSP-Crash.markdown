@@ -5,7 +5,7 @@ date:   2021-05-01 12:10:43 -0500
 categories: halo bugfix
 twitchclip1: PlayfulDelightfulHumanSeemsGood
 twitchclip2: BoredRamshackleCaribouBleedPurple
-twitchvideo1: 831432106
+twitchvideo1: video=v831432106&parent=blog.scal.es
 youtubevideo1: cDY_cN5cQuc
 youtubevideo2: POnqGtKdsFA
 youtubevideo3: jsiu1WPDqJQ
@@ -31,7 +31,7 @@ EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
 Dubhzo:
 {% include twitchClipPlayer.html id=page.twitchclip2 %}
-
+Temperament:
 {% include twitchVODPlayer.html id=page.twitchvideo1 %}
 ibigblue #1:
 {% include youtubePlayer.html id=page.youtubevideo1 %}

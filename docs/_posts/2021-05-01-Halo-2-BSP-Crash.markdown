@@ -12,8 +12,6 @@ youtubevideo3: jsiu1WPDqJQ
 ---
 
 {% highlight cpp %}
-
-
 // ...
 void* p_buffer[32768]; Buffer of tag pointers, fixed-size 32k elements
 // After the tag buffer exists some debug data
@@ -27,17 +25,32 @@ char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 int64_t next_tag_index = 1;
 {% endhighlight %}
 
-EggplantHydra:
+## Examples of crashes:
+
+### EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
-Dubhzo:
+### Dubhzo:
 {% include twitchClipPlayer.html id=page.twitchclip2 %}
-Temperament:
-{% include twitchVODPlayer.html id=page.twitchvideo1 %}
-ibigblue #1:
+### Temperament:
+{% raw %}
+<div class="embed-container" markdown="0">
+  <iframe
+	  src="https://player.twitch.tv/?video=v831432106&parent=blog.scal.es"
+      height="360"
+      width="640"
+      frameborder="0"
+      scrolling="no"
+      muted="false"
+      autoplay="false"
+      allowfullscreen="true">
+  </iframe>
+</div>
+{% endraw %}
+### ibigblue #1:
 {% include youtubePlayer.html id=page.youtubevideo1 %}
-ibigblue #2:
+### ibigblue #2:
 {% include youtubePlayer.html id=page.youtubevideo2 %}
-Raiyuki:
+### Raiyuki:
 {% include youtubePlayer.html id=page.youtubevideo3 %}
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].

@@ -25,7 +25,7 @@ char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 int64_t next_tag_index = 1;
 {% endhighlight %}
 
-## Examples of crashes:
+## Crashes from the HaloRuns community:
 
 ### EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
@@ -33,18 +33,7 @@ int64_t next_tag_index = 1;
 {% include twitchClipPlayer.html id=page.twitchclip2 %}
 ### Temperament:
 {% raw %}
-<div class="embed-container" markdown="0">
-  <iframe
-	  src="https://player.twitch.tv/?video=v831432106&parent=blog.scal.es"
-      height="360"
-      width="640"
-      frameborder="0"
-      scrolling="no"
-      muted="false"
-      autoplay="false"
-      allowfullscreen="true">
-  </iframe>
-</div>
+<iframe src="https://player.twitch.tv/?video=831432106&parent=blog.scal.es&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="480" width="720"></iframe>
 {% endraw %}
 ### ibigblue #1:
 {% include youtubePlayer.html id=page.youtubevideo1 %}

@@ -47,7 +47,7 @@ int64_t insert_value_into_p_buffer(int64_t value)
 }
 {% endhighlight %}
 
-The bug here is that `next_index` has no upper bound and only has 1 reset condition: the first time the level is loaded. It grows and grows until it is larger than 32768, thus pointing beyond the end of `p_buffer`. First it overruns onto the debug information which causes the familiar green BSP and POS counters to be visible. After that, critical runtime and scenario data is overwritten, at which point the game cannot cope and crashes.
+The bug here is that `next_index` has no upper bound and only has 1 reset condition: the first time the level is loaded. It grows and grows until it is larger than 32768, pointing beyond the end of `p_buffer` and corrupting other regions of memory. First it overruns onto the debug information which causes the familiar green BSP and POS counters to be visible. After that, critical runtime and scenario data is overwritten, at which point the game cannot cope and crashes.
 
 # Resolution
 

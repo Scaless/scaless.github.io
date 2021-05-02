@@ -25,16 +25,15 @@ The oldest clip I could find of this style of crash is from early August 2020, a
 After some hot tips from the HaloRuns community for reproducing the crash and some analysis of crash dumps, I figured out where in memory the relevant data was stored. The memory layout for that section looks something like this:
 
 {% highlight cpp %}
-// The next index into p_buffer to allocate and hand out, starts at 1
-int32_t next_index = 1;
+int32_t next_index = 1; // The next index into p_buffer to allocate and hand out, starts at 1
 void* p_buffer[32768]; // Buffer of pointers, fixed-size 32k elements
-// Right after this buffer is some debug data
 [Debug Data]
 bool show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 [More Debug Data]
-// After the debug data is very important runtime and scenario data
 [Scenario Data]
 {% endhighlight %}
+
+* `next_index` starts at 1 because the 0th element in the buffer is used as an offset to add to the pointer inside the buffer. On PC this offset seems to always be 0 and is not relevant to the bug itself.
 
 Every time the game loads content, a new value is stored in `p_buffer` at the index of the current value of `next_index`. `next_index` is then incremented by 1 and the value of the previous index is returned. The pseudocode for the function looks like this: 
 
@@ -71,7 +70,7 @@ Since we now know the exact cause of the crash, making a repro was easy. Quarant
 
 {% include youtubePlayer.html id=page.youtubevideorepro %}
 
-A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash within a minute depending on the load zones in level.
+A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash  quickly depending on the load zones in level.
 
 # Final Thoughts
 

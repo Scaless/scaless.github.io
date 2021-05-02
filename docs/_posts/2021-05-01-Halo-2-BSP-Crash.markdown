@@ -1,51 +1,113 @@
 ---
 layout: post
-title:  "Halo 2 'BSP Crash' Fix"
+title:  "MCC Halo 2 'BSP Crash' Fix"
 date:   2021-05-01 12:10:43 -0500
-categories: halo bugfix
+categories: halo
 twitchclip1: PlayfulDelightfulHumanSeemsGood
 twitchclip2: BoredRamshackleCaribouBleedPurple
-twitchvideo1: video=v831432106&parent=blog.scal.es
 youtubevideo1: cDY_cN5cQuc
 youtubevideo2: POnqGtKdsFA
 youtubevideo3: jsiu1WPDqJQ
+youtubevideorepro: eh021lpMwO4
 ---
 
+For many months a game crash has been plaguing the MCC Halo 2 speedrunning community. Seemingly random and inconsistent, it mostly struck players doing IL (Individual Level) speedruns. The crash gained its name from the bright green text that appeared in the bottom right of the screen during the game's final moments.
+
+![BSP Crash](/assets/crash.jpg)
+
+{% include twitchClipPlayer.html id=page.twitchclip2 %}
+Credit: [Dubhzo][dubhzo-twitch] 
+
+The oldest clip I could find of this style of crash is from early August 2020, and we believe the crash originated from one of the MCC patches around that period. Curiously, the [patch notes][july-patch-notes] for the July 14th 2020 release mention "Halo 2: Resolved a crash that could occur during long playthroughs". Hmmm.
+
+# Digging Deeper
+
+After some hot tips from the HaloRuns community for reproducing the crash and some analysis of crash dumps, I figured out where in memory the relevant data was stored. The memory layout for that section looks something like this:
+
 {% highlight cpp %}
-// ...
-void* p_buffer[32768]; Buffer of tag pointers, fixed-size 32k elements
-// After the tag buffer exists some debug data
-// ...
-char show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
-// ...
-// After the debug data is *very important* Scenario data
-// ...
-// ...
 // The next index into p_buffer to allocate and hand out, starts at 1
-int64_t next_tag_index = 1;
+int32_t next_index = 1;
+void* p_buffer[32768]; // Buffer of pointers, fixed-size 32k elements
+// Right after this buffer is some debug data
+[Debug Data]
+bool show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
+[More Debug Data]
+// After the debug data is very important runtime and scenario data
+[Scenario Data]
 {% endhighlight %}
 
-## Crashes from the HaloRuns community:
+Every time the game loads content, a new value is stored in `p_buffer` at the index of the current value of `next_index`. `next_index` is then incremented by 1 and the value of the previous index is returned. The pseudocode for the function looks like this: 
+
+{% highlight cpp %}
+int64_t insert_value_into_p_buffer(int64_t value)
+{
+  int64_t allocated_index = next_index;
+  p_buffer[next_index] = value;
+  next_index++;
+  return allocated_index;
+}
+{% endhighlight %}
+
+The bug here is that `next_index` has no upper bound and only has 1 reset condition: the first time the level is loaded. It grows and grows until it is larger than 32768, at which point it points beyond the end of `p_buffer`. First it overruns onto the debug information which causes the familiar green BSP and POS counters to be visible. After that, critical runtime and scenario data is overwritten, at which point the game cannot cope and crashes.
+
+Typical players will almost never run into this crash. It relies on restarting and running through the level over and over, dozens of times so that the index grows large enough to crash. What kind of player would do such a thing?
+
+Oh right, speedrunners.
+
+If you're grinding for a good IL time, you will constantly be restarting the level after any mistake. This could be dozens or hundreds of attempts in a single session. 
+
+Until this is officially fixed by 343, I have released a code patch to fix this bug. The basic gist of the solution is to hook the functions that modify the `p_buffer` table and redirect them to write into a `std::vector` that can dynamically grow to any size. The `p_buffer` table is then not used any further. While this doesn't solve the underlying issue of poor memory management, it does allow for vastly longer play sessions without crashing.
+
+[The code for the patch is available here][implemented-fix]. 
+
+# Repro
+
+Since we now know the exact cause of the crash, making a repro was easy. Quarantine Zone was by far the worst level for triggering the crash, so the optimal strategy for reproducing it is the following:
+
+1. Start up QZ
+2. Drive to the 2nd shutter door
+3. Restart the level
+4. Repeat for roughly 9 minutes until crash.
+
+{% include youtubePlayer.html id=page.youtubevideorepro %}
+
+A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash within a minute depending on the load zones in level.
+
+# Final Thoughts
+
+Big thanks to Harc for helping me with debugging and testing: [Check out his Twitch][harc-twitch] 
+
+Did somebody say [haloruns.com][haloruns-link]? If you're interested in speedrunning any game in the Halo series, give the [haloruns site][haloruns-link] and [Discord][haloruns-discord] a peek.
+
+If anyone from 343 is reading, the relevant functions and addresses used are here:
+
+| Game Version | MCC 2282 , Steam |
+| next_index | halo2.dll+CD8098 |
+| p_buffer table | halo2.dll+E22370 |
+| clear_pointer_table | halo2.dll+6DF770 |
+| get_pointer_by_index | halo2.dll+6DF7A0 |
+| insert_pointer | halo2.dll+6DF7B0 |
+
+pls fix
+
+## Other examples of crashes:
 
 ### EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
-### Dubhzo:
-{% include twitchClipPlayer.html id=page.twitchclip2 %}
+
 ### Temperament:
 {% raw %}
 <iframe src="https://player.twitch.tv/?video=831432106&parent=blog.scal.es&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="480" width="720"></iframe>
 {% endraw %}
-### ibigblue #1:
+### ibigblue:
 {% include youtubePlayer.html id=page.youtubevideo1 %}
-### ibigblue #2:
 {% include youtubePlayer.html id=page.youtubevideo2 %}
 ### Raiyuki:
 {% include youtubePlayer.html id=page.youtubevideo3 %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
-
+[haloruns-link]: https://haloruns.com/
+[haloruns-discord]: https://haloruns.com/discord
+[harc-twitch]: https://www.twitch.tv/harctehshark
+[dubhzo-twitch]: https://www.twitch.tv/dubhzo
 [implemented-fix]: https://github.com/Scaless/HaloTAS/blob/master/HaloTAS/HRPatcher/dllmain.cpp#L257
+[july-patch-notes]: https://support.halowaypoint.com/hc/en-us/articles/360045689232-Halo-The-Master-Chief-Collection-Patch-Notes-7-14-20

@@ -21,7 +21,7 @@
 title: Scales
 email: scales@scal.es
 description: >- # this means to ignore newlines until "baseurl:"
-  The Blog belonging to Scales.
+  Scales' Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: Scal_es

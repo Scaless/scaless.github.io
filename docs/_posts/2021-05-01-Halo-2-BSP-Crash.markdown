@@ -49,18 +49,6 @@ int64_t insert_value_into_p_buffer(int64_t value)
 
 The bug here is that `next_index` has no upper bound and only has 1 reset condition: the first time the level is loaded. It grows and grows until it is larger than 32768, pointing beyond the end of `p_buffer` and corrupting other regions of memory. First it overruns onto the debug information which causes the familiar green BSP and POS counters to be visible. After that, critical runtime and scenario data is overwritten, at which point the game cannot cope and crashes.
 
-# Resolution
-
-Typical players will almost never run into this crash. It relies on restarting and running through the level over and over, dozens of times so that the index grows large enough to crash. What kind of player would do such a thing?
-
-Oh right, speedrunners.
-
-If you're grinding for a good IL time, you will constantly be restarting the level after any mistake. This could be dozens or hundreds of attempts in a single session. That's why this crash hasn't been more widely reported by the playerbase, they just don't play enough!
-
-Until this is officially fixed by 343, I have released a code patch to fix this bug. The basic gist of the solution is to hook the functions that modify the `p_buffer` table and redirect them to write into a `std::vector` that can dynamically grow to any size. The `p_buffer` table is then not used any further. While this doesn't solve the underlying issue of poor memory management, it does allow for vastly longer play sessions without crashing.
-
-[The code for the patch is available here][implemented-fix]. 
-
 # Repro
 
 Since we now know the exact cause of the crash, making a repro was easy. Quarantine Zone was by far the worst level for triggering the crash, so the optimal strategy for reproducing it is the following:
@@ -73,6 +61,18 @@ Since we now know the exact cause of the crash, making a repro was easy. Quarant
 {% include youtubePlayer.html id=page.youtubevideorepro %}
 
 A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash  quickly depending on the load zones in level.
+
+# Resolution
+
+Typical players will almost never run into this crash. It relies on restarting and running through the level over and over, dozens of times so that the index grows large enough to crash. What kind of player would do such a thing?
+
+Oh right, speedrunners.
+
+If you're grinding for a good IL time, you will constantly be restarting the level after any mistake. This could be dozens or hundreds of attempts in a single session. That's why this crash hasn't been more widely reported by the playerbase, they just don't play enough!
+
+Until this is officially fixed by 343, I have released a code patch to fix this bug. The basic gist of the solution is to hook the functions that modify the `p_buffer` table and redirect them to write into a `std::vector` that can dynamically grow to any size. The `p_buffer` table is then not used any further. While this doesn't solve the underlying issue of poor memory management, it does allow for vastly longer play sessions without crashing.
+
+[The code for the patch is available here][implemented-fix]. 
 
 # Final Thoughts
 

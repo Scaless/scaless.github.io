@@ -78,7 +78,7 @@ Until this is officially fixed by 343, I have released a code patch to fix this 
 
 Big thanks to Harc for helping me with debugging and testing: [Check out his Twitch][harc-twitch] 
 
-Did somebody say [haloruns.com][haloruns-link]? If you're interested in speedrunning any game in the Halo series, give the [haloruns site][haloruns-link] and [Discord][haloruns-discord] a peek.
+Did somebody say [HaloRuns.com][haloruns-link]? If you're interested in speedrunning any game in the Halo series, give the [HaloRuns site][haloruns-link] and [Discord][haloruns-discord] a peek.
 
 If anyone from 343 is reading, the relevant functions and addresses used are here:
 

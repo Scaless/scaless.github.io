@@ -68,7 +68,7 @@ Since we now know the exact cause of the crash, making a repro was easy. Quarant
 1. Start up QZ
 2. Drive to the 2nd shutter door
 3. Restart the level
-4. Repeat for roughly 9 minutes until crash.
+4. Repeat for roughly 9 minutes until index grows beyond 32768 and corrupts memory.
 
 {% include youtubePlayer.html id=page.youtubevideorepro %}
 

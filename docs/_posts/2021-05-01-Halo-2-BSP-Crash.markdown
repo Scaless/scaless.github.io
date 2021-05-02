@@ -60,7 +60,7 @@ Since we now know the exact cause of the crash, making a repro was easy. Quarant
 
 {% include youtubePlayer.html id=page.youtubevideorepro %}
 
-A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash  quickly depending on the load zones in level.
+A faster alternative with access to debugging tools is to just set `next_index` to a value close to the threshold, say 32000. This should cause the crash  quickly depending on the load zones in the level.
 
 # Resolution
 

@@ -11,6 +11,10 @@ youtubevideo3: jsiu1WPDqJQ
 youtubevideorepro: eh021lpMwO4
 ---
 
+[I tweeted this article @343 here][twitter], give it a rt and like :) 
+
+---
+
 For many months, a game crash has been plaguing the MCC Halo 2 speedrunning community. Seemingly random and inconsistent, it mostly struck players doing IL (Individual Level) speedruns. The crash gained its name from the bright green text that appeared in the bottom right of the screen during the game's final moments.
 
 ![BSP Crash](/assets/crash.jpg)
@@ -121,6 +125,7 @@ Halo 2 Mobile?
 
 ![Halo 2 Mobile](/assets/mobile_halo.jpg)
 
+[twitter]: https://twitter.com/Scal_es/status/1388901647502516227
 [pan-cam-wiki]: https://www.halopedia.org/Panoramic_Camera_Mode
 [haloruns-link]: https://haloruns.com/
 [haloruns-discord]: https://haloruns.com/discord

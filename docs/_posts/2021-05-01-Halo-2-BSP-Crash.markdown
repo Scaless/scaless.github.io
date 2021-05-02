@@ -33,7 +33,7 @@ bool show_bsp_debug; // Usually 0, if > 0 show debug string on-screen
 [Scenario Data]
 {% endhighlight %}
 
-* `next_index` starts at 1 because the 0th element in the buffer is used as an offset to add to the pointer inside the buffer. On PC this offset seems to always be 0 and is not relevant to the bug itself.
+* `next_index` starts at 1 because the 0th element in the buffer is used as an offset to add to pointers read from the buffer. On PC this offset seems to always be 0 and is not relevant to the bug itself.
 
 Every time the game loads content, a new value is stored in `p_buffer` at the index of the current value of `next_index`. `next_index` is then incremented by 1 and the value of the previous index is returned. The pseudocode for the function looks like this: 
 

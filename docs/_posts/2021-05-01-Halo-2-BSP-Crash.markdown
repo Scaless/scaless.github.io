@@ -102,6 +102,7 @@ pls fix
 {% include youtubePlayer.html id=page.youtubevideo1 %}
 {% include youtubePlayer.html id=page.youtubevideo2 %}
 ### Raiyuki:
+This one is really interesting because it overflowed just enough to write into the debug data and enable the BSP debug text, but not far enough to actually cause a crash until the next load.
 {% include youtubePlayer.html id=page.youtubevideo3 %}
 
 [haloruns-link]: https://haloruns.com/

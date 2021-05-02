@@ -49,6 +49,14 @@ int64_t insert_value_into_p_buffer(int64_t value)
 
 The bug here is that `next_index` has no upper bound and only has 1 reset condition: the first time the level is loaded. It grows and grows until it is larger than 32768, pointing beyond the end of `p_buffer` and corrupting other regions of memory. First it overruns onto the debug information which causes the familiar green BSP and POS counters to be visible. After that, critical runtime and scenario data is overwritten, at which point the game cannot cope and crashes.
 
+Data corruption bugs are usually some of the most difficult to trace and debug. We were extremely lucky that the debug register for showing the BSP text on screen was the first thing to get corrupted. Being able to find the format string for that text and working backwards from there made the process very smooth. The full format string for that text actually looks like this:
+
+{% highlight cpp %}
+[bsp %d][pos %4.1f %4.1f %4.1f][fps %2.1f] %2.2f
+{% endhighlight %}
+
+This itself might have been an earlier version of the [pan-cam][pan-cam-wiki] stats that later games used. I really like finding these little debugging tools that developers made for themselves.
+
 # Repro
 
 Since we now know the exact cause of the crash, making a repro was easy. Quarantine Zone was by far the worst level for triggering the crash, so the optimal strategy for reproducing it is the following:
@@ -91,22 +99,29 @@ If anyone from 343 is reading, the relevant functions and addresses used are her
 
 pls fix
 
-## Other examples of crashes:
+## More examples of crashes:
 
-### EggplantHydra:
+#### EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}
 
-### Temperament:
+#### Temperament:
 {% raw %}
 <iframe src="https://player.twitch.tv/?video=831432106&parent=blog.scal.es&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="480" width="720"></iframe>
 {% endraw %}
-### ibigblue:
+#### ibigblue:
 {% include youtubePlayer.html id=page.youtubevideo1 %}
 {% include youtubePlayer.html id=page.youtubevideo2 %}
-### Raiyuki:
+#### Raiyuki:
 This one is really interesting because it overflowed just enough to write into the debug data and enable the BSP debug text, but not far enough to actually cause a crash until the next load. The artifacts you see flailing around are caused by other parts of code still reading/writing to the addresses that are now shared with the overflowed `p_buffer`.
 {% include youtubePlayer.html id=page.youtubevideo3 %}
 
+# Bonus
+
+Halo 2 Mobile?
+
+![Halo 2 Mobile](/assets/mobile_halo.jpg)
+
+[pan-cam-wiki]: https://www.halopedia.org/Panoramic_Camera_Mode
 [haloruns-link]: https://haloruns.com/
 [haloruns-discord]: https://haloruns.com/discord
 [harc-twitch]: https://www.twitch.tv/harctehshark

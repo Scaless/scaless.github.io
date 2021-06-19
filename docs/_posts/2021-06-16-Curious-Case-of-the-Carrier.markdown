@@ -246,6 +246,10 @@ On Easy difficulty, the `0.3` enemy damage multiplier is replaced with a `1.0` m
 
 On Legendary difficulty, the `1.8` enemy damage multiplier is replaced with a `1.0` multiplier. This results in the player taking almost half the damage than they should have.
 
+### Summary
+
+To properly give players kill credit and assign Medals when Carriers explode and kill *other* enemies, 343 implemented a pair of attribution tables to propagate which Carriers the player killed. In the implementation of this system, the Team property of the carrier explosion damage effect is improperly changed from Flood to Player, resulting in an incorrect scaling of damage done to the player.
+
 ## 4. Resolution
 
 To the geeksters of 343 Industries who may be reading:

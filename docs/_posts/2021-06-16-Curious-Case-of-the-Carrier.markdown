@@ -160,9 +160,9 @@ Let's look at one more example.
 
 ## 3. Whose Side Are You On?
 
-Back to topic at hand. Why is the Carrier dealing the incorrect amount of damage when we are the one to kill it?
+Back to topic at hand. Why is the Carrier dealing an inconsistent amount of damage when we are the one to kill it?
 
-This behavior does not occur on the original Xbox release, the Gearbox PC port, or the standalone Combat Evolved: Anniversary Edition. It is exclusive to the Master Chief Collection. But why? 
+This behavior does not occur on the original Xbox release, the Gearbox PC port, or the standalone Combat Evolved: Anniversary Edition. It is exclusive to the Master Chief Collection. Why only that version? 
 
 As we'll find out in a bit, the root cause is the [Medals and Scoring system added in the Master Chief Collection.](https://www.ign.com/articles/2014/10/07/medal-system-added-to-halo-ce-and-halo-2-in-halo-the-master-chief-collection)
 

@@ -34,6 +34,8 @@ Let's get some terminology out of the way first:
 |Shields|A floating point value representing the ratio of the unit's current shields vs. maximum shields. Usually between `0.0` to `1.0`, but can go higher in some cases (ex: Overshield). Cannot be reduced below `0.0` by normal means.|
 |Team|In multiplayer we have Red vs. Blue. In campaign we have a couple more options. There are teams for Players, Humans, Covenant, Flood, and Sentinels. Teams can be either friendly or hostile to each other, and units assigned to a team will react appropriately. For example, the Players team is friendly to the Humans team and both are enemies to the Covenant team. Betraying marines can temporarily change the relationship between Players and Humans to hostile.|
 
+To get a good understanding of the process of calculating damage, we'll step through a couple examples from end to end.
+
 # Scenario 1: Fragging Yourself on Easy Difficulty
 
 <video muted autoplay controls loop style="width:100%">

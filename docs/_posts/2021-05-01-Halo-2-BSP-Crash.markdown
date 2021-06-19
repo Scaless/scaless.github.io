@@ -13,6 +13,8 @@ youtubevideorepro: eh021lpMwO4
 
 [I tweeted this article @343 here][twitter], give it a rt and like :) 
 
+*2021-06-09 Update: 343 has responded to my support ticket that they are aware of the issue :)*
+
 ---
 
 For many months, a game crash has been plaguing the MCC Halo 2 speedrunning community. Seemingly random and inconsistent, it mostly struck players doing IL (Individual Level) speedruns. The crash gained its name from the bright green text that appeared in the bottom right of the screen during the game's final moments.

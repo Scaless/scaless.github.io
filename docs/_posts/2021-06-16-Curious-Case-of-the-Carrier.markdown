@@ -250,7 +250,7 @@ On Legendary difficulty, the `1.8` enemy damage multiplier is replaced with a `1
 
 ### Summary
 
-To properly give players kill credit and assign Medals when Carriers explode and kill *other* enemies, 343 implemented a pair of attribution tables to propagate which Carriers the player killed. In the implementation of this system, the Team property of the carrier explosion damage effect is improperly changed from Flood to Player, resulting in an incorrect scaling of damage done to the player.
+To properly give players kill credit and assign Medals when Carriers explode and kill *other* enemies, 343 implemented a pair of attribution tables to propagate which Carriers the player killed. In the implementation of this system, the Team property of the related damage effect is improperly changed from Flood to Player, resulting in an incorrect scaling of damage done to the player.
 
 ## 4. Resolution
 
@@ -271,3 +271,4 @@ I am suggesting the following solution, but you have more context than I do to d
 
 * Big thanks to [doubl3h3lix](https://www.twitch.tv/doubl3h3lix) for digging up his dusty copy of the standalone Combat Evolved: Anniversary to test some things on console!
 
+* Thanks to [Burnt](https://www.twitch.tv/burnt_o) and [Wackee](https://www.twitch.tv/wackeeeeee) for proofreading.

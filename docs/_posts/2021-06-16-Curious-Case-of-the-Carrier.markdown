@@ -3,7 +3,6 @@ layout: post
 title:  "Curious Case of the Carrier"
 date:   2021-06-16 12:00:00 -0500
 categories: halo
-image: https://blog.scal.es/assets/343_development_process.jpg
 ---
 
 Note: I have already submitted this bug through 343 support, please don't send duplicates :)

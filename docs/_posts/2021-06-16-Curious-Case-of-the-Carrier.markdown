@@ -5,9 +5,13 @@ date:   2021-06-16 12:00:00 -0500
 categories: halo
 ---
 
+Note: I have already submitted this bug through 343 support, please don't send duplicates :)
+
+---
+
 ## 1. Getting Carried Away
 
-If you've played a lot of the Combat Evolved level The Library on the Master Chief Collection, you may have noticed something odd about Flood Carriers.
+If you've played a lot of the Combat Evolved level 'The Library' on the Master Chief Collection, you may have noticed something odd about Flood Carriers.
 
 When a Flood Carrier explodes, it will deal a varying amount of damage to you depending on if you were the one to kill it or if it died of natural causes.
 
@@ -21,7 +25,7 @@ What's the deal with that?
 
 ## 2. That's A Lotta Damage
 
-**Before we get to talking about the Carrier issue specifically, it would be helpful to go over exactly how damage is calculated in Halo 1. This section goes quite in-depth, so you can skip forward to Section 3 if you just want to get to the point.**
+**Before we get to talking about the Carrier issue specifically, it would be useful to go over exactly how damage is calculated in Halo 1. This section goes more in-depth than is really necessary, so you can skip forward to Section 3 if you just want to get to the point.**
 
 Halo 1's damage calculations are ... interesting. There is a surprising amount of detail to determine how much damage you (and your enemies) can deal. 
 
@@ -176,7 +180,7 @@ How could *double kills* and *triple kills* possibly affect the damage a Carrier
 
 ![spaghetti](/assets/spaghetti.png)
 
-Grab your forks and get ready to dig into some spaghetti.
+### Code, Al Dente
 
 My initial thought process for tracking down this anomaly was pretty simple: Damage a Carrier and set a breakpoint in the function where our player unit takes damage and work backwards from there.
 
@@ -220,17 +224,11 @@ TeamId damage_source_team = damage_effect.source_unit.team;
 if(damage_source_unit.name.contains("floodcarrier")){
   UnitId killer = Carriers.GetKiller(damage_source_unit);
   if(killer != null){
-    // Necessary to propagate the history of who the original unit was that
-    // killed the carrier. Imagine a chain reaction where the player shoots
-    // a Carrier which blows up, killing another Carrier that blows up,
-    // killing a third Carrier. In the Medals and Scoring system the player
-    // receives credit for all three kills, even though they only directly
-    // killed the first Carrier. This is ok.
+    // Propagate the history of who the original unit was that
+    // killed the carrier. This is ok.
     damage_source_unit = killer;
-    // THIS, however, is NOT ok. We are overriding the team that the damage 
-    // is coming from to be the killer's team. In 99% of cases, the killer
-    // will be a player unit, so this will be converting the damage's
-    // team from Flood to Players.
+    // Override the team that the damage is coming from to be 
+    // the killer's team (i.e. the Player). This is NOT ok. 
     damage_source_team = killer.team;
   }
 }
@@ -250,6 +248,16 @@ On Legendary difficulty, the `1.8` enemy damage multiplier is replaced with a `1
 
 ### Summary
 
+So why does this code even exist? If you haven't pieced it together yet, this is where Medals and Scoring come into play.
+
+Imagine the following chain reaction:
+
+1. The player shoots a Carrier which blows up immediately.
+1. The explosion launches a second Carrier across the room.
+1. This second Carrier lands next to a group of Infection forms and explodes, killing the group.
+
+In the Medals and Scoring system, the player receives a double-kill medal for killing the Carriers and additional points for killing the Infection forms even though they were only directly responsible for killing the first Carrier. The kills also increment counters that are visible on the Post-Game Carnage Report at the end of the level.
+
 To properly give players kill credit and assign Medals when Carriers explode and kill *other* enemies, 343 implemented a pair of attribution tables to propagate which Carriers the player killed. In the implementation of this system, the Team property of the related damage effect is improperly changed from Flood to Player, resulting in an incorrect scaling of damage done to the player.
 
 ## 4. Resolution
@@ -260,7 +268,7 @@ To the geeksters of 343 Industries who may be reading:
 1. The attribution tables are NOT included in game state that is saved in checkpoints/core saves, which means this bug affects determinism. Loading a save where a Carrier has been damaged but not yet exploded will result in a different amount of damage applied versus the first time the section was played. 
 
 I am suggesting the following solution, but you have more context than I do to deal with the issue:
-* Just remove the code that overrides the team of the damage effect. From my limited testing this does not seem to affect the PGCR report as the attribution is still propagated appropriately, and this restores consistency with previous versions.
+* Just remove the code that overrides the team of the damage effect. From my limited testing this does not seem to affect the Post-Game Carnage Report as the attribution is still propagated appropriately, and this restores consistency with previous versions.
 
 | Game Version | MCC 2282 , Steam |
 | Attribution Tables Location | halo1.dll+2B6BCD0 |
@@ -269,6 +277,6 @@ I am suggesting the following solution, but you have more context than I do to d
 
 ## -- Credits 
 
-* Big thanks to [doubl3h3lix](https://www.twitch.tv/doubl3h3lix) for digging up his dusty copy of the standalone Combat Evolved: Anniversary to test some things on console!
+* Big thanks to [doubl3h3lix](https://www.twitch.tv/doubl3h3lix) for digging up his dusty copy of the standalone Combat Evolved: Anniversary to test some things!
 
-* Thanks to [Burnt](https://www.twitch.tv/burnt_o) and [Wackee](https://www.twitch.tv/wackeeeeee) for proofreading.
+* Thanks to [Burnt](https://www.twitch.tv/burnt_o) and [Wackee](https://www.twitch.tv/wackeeeeee) for proofreading this post.

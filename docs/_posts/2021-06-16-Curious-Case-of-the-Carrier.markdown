@@ -275,6 +275,11 @@ I am suggesting the following solution, but you have more context than I do to d
 | Adding Table Entry | halo1.dll+C004DC |
 | Checking/Removing Table Entry | halo1.dll+B65DF8 |
 
+| Game Version | MCC 2406 , Steam |
+| Attribution Tables Location | halo1.dll+2A88AD0 |
+| Adding Table Entry | halo1.dll+BFDB4C |
+| Checking/Removing Table Entry | halo1.dll+B743E3 |
+
 ## -- Credits 
 
 * Big thanks to [doubl3h3lix](https://www.twitch.tv/doubl3h3lix) for digging up his dusty copy of the standalone Combat Evolved: Anniversary to test some things!

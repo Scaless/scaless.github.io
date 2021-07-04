@@ -103,6 +103,13 @@ If anyone from 343 is reading, the relevant functions and addresses used are her
 | get_pointer_by_index | halo2.dll+6DF7A0 |
 | insert_pointer | halo2.dll+6DF7B0 |
 
+| Game Version | MCC 2406 , Steam |
+| next_index | halo2.dll+CD9098 |
+| p_buffer table | halo2.dll+E23110 |
+| clear_pointer_table | halo2.dll+6DF710 |
+| get_pointer_by_index | halo2.dll+6DF740 |
+| insert_pointer | halo2.dll+6DF750 |
+
 pls fix
 
 ## More examples of crashes:

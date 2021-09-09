@@ -16,7 +16,7 @@ youtubevideorepro: eh021lpMwO4
 
 *2021-06-09 Update: 343 has responded to my support ticket that they are aware of the issue :)*
 
-*2021-09-09 Update: Still not patched yet :(
+*2021-09-09 Update: Still not patched yet :(*
 
 {% include twitchClipPlayer.html id=page.twitchclip3 %}
 Credit: [Harc][harc-twitch] 

@@ -5,6 +5,7 @@ date:   2021-05-01 12:10:43 -0500
 categories: halo
 twitchclip1: PlayfulDelightfulHumanSeemsGood
 twitchclip2: BoredRamshackleCaribouBleedPurple
+twitchclip3: BoredAttractiveLegTebowing-fMMQkjhXDv6jC5gJ
 youtubevideo1: cDY_cN5cQuc
 youtubevideo2: POnqGtKdsFA
 youtubevideo3: jsiu1WPDqJQ
@@ -14,6 +15,11 @@ youtubevideorepro: eh021lpMwO4
 [I tweeted this article @343 here][twitter], give it a rt and like :) 
 
 *2021-06-09 Update: 343 has responded to my support ticket that they are aware of the issue :)*
+
+*2021-09-09 Update: Still not patched yet :(
+
+{% include twitchClipPlayer.html id=page.twitchclip3 %}
+Credit: [Harc][harc-twitch] 
 
 ---
 

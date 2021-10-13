@@ -16,10 +16,7 @@ youtubevideorepro: eh021lpMwO4
 
 *2021-06-09 Update: 343 has responded to my support ticket that they are aware of the issue :)*
 
-*2021-09-09 Update: Still not patched yet :(*
-
-{% include twitchClipPlayer.html id=page.twitchclip3 %}
-Credit: [Harc][harc-twitch] 
+*2021-10-13 Update: 343 Fixed the crash in Season 8 (v2580)! Unfortunately this patch also broke a ton of speedrunning tricks, but at least there's no crashes?*
 
 ---
 
@@ -119,6 +116,9 @@ If anyone from 343 is reading, the relevant functions and addresses used are her
 pls fix
 
 ## More examples of crashes:
+
+#### Harc
+{% include twitchClipPlayer.html id=page.twitchclip3 %}
 
 #### EggplantHydra:
 {% include twitchClipPlayer.html id=page.twitchclip1 %}

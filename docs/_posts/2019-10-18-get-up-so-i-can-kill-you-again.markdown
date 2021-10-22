@@ -75,9 +75,3 @@ The focus for the next few updates is going to be on tackling the remaining sour
 <sup>1</sup> Using Game Capture in OBS you can actually see the last 60 frames rendering in the preview, but the Halo window itself does not update. Window Capture works appropriately.
 
 <sup>2</sup> When I brought this up in the community, some people already knew that disabling sound could have adverse effects like more crashes, but not the specifics of what was affected.
-
----
-
-[github.com/Scaless/HaloTAS](https://github.com/Scaless/HaloTAS)
-
-If you would like to support my projects, check out my [Patreon](https://www.patreon.com/scalesllc).

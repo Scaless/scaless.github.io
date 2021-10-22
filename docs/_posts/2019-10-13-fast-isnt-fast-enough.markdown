@@ -5,12 +5,6 @@ date:   2019-10-13 12:18:04 -0400
 categories: halo
 ---
 
-[github.com/Scaless/HaloTAS](https://github.com/Scaless/HaloTAS)
-
-If you would like to support my projects, check out my [Patreon](https://www.patreon.com/scalesllc).
-
----
-
 Recently a new geo-bump (teleporting your character with level geometry) was found on the level Keyes. If you are not entirely familiar with Halo 1 speedrunning, Keyes is by far the most optimized speedrun level in the game. The current IL record for Keyes on Easy difficulty is 2 minutes and 18 seconds. With current strats we think it is theoretically possible to get a 2:17 with perfect RNG and movement. 
 
 The new geo-bump strategy is very difficult to pull off consistently. In 200 attempts I was only able to do it twice. It requires incredibly precise movement and look direction while being inside of a wall with no currently consistent human-possible setup.
@@ -57,7 +51,5 @@ By twiddling a few bits in the tick handling system we can trick the game into t
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xSPpZSJTSkI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 With this new system we can quickly advance to a specific tick anywhere in the playback within seconds, and I can finally strip out the flawed `core_x` utilities. 
-
-This is my first 'blog' post on this project, let me know if I should keep making these in the future.
 
 ~Scales

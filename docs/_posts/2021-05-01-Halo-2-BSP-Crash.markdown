@@ -12,11 +12,11 @@ youtubevideo3: jsiu1WPDqJQ
 youtubevideorepro: eh021lpMwO4
 ---
 
-[I tweeted this article @343 here][twitter], give it a rt and like :) 
-
 *2021-06-09 Update: 343 has responded to my support ticket that they are aware of the issue :)*
 
 *2021-10-13 Update: 343 Fixed the crash in Season 8 (v2580)! Unfortunately this patch also broke a ton of speedrunning tricks, but at least there's no crashes?*
+
+*2024-08-23 Update: Fixed some broken links and removed Twitter link, since I deleted my account after Musk purchased it.*
 
 ---
 
@@ -140,11 +140,10 @@ Halo 2 Mobile?
 
 ![Halo 2 Mobile](/assets/mobile_halo.jpg)
 
-[twitter]: https://twitter.com/Scal_es/status/1388901647502516227
 [pan-cam-wiki]: https://www.halopedia.org/Panoramic_Camera_Mode
 [haloruns-link]: https://haloruns.com/
 [haloruns-discord]: https://haloruns.com/discord
 [harc-twitch]: https://www.twitch.tv/harctehshark
 [dubhzo-twitch]: https://www.twitch.tv/dubhzo
-[implemented-fix]: https://github.com/Scaless/HaloTAS/blob/master/HaloTAS/HRPatcher/dllmain.cpp#L257
+[implemented-fix]: https://github.com/Scaless/HaloTAS/blob/0706b2bf5150ef00c9ed520fe21dde2d3304d31c/HaloTAS/HRPatcher/dllmain.cpp#L268
 [july-patch-notes]: https://support.halowaypoint.com/hc/en-us/articles/360045689232-Halo-The-Master-Chief-Collection-Patch-Notes-7-14-20

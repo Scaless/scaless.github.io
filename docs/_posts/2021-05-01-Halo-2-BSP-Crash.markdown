@@ -20,6 +20,8 @@ youtubevideorepro: eh021lpMwO4
 
 ---
 
+# Overview
+
 For many months, a game crash has been plaguing the MCC Halo 2 speedrunning community. Seemingly random and inconsistent, it mostly struck players doing IL (Individual Level) speedruns. The crash gained its name from the bright green text that appeared in the bottom right of the screen during the game's final moments.
 
 ![BSP Crash](/assets/crash.jpg)
